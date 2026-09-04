@@ -1,56 +1,43 @@
-# LofixBot Privacy Policy
+# LofixBot Message Content Intent Evidence
 
-Last updated: June 24, 2026
+This repository documents why LofixBot requires Discord's Message Content privileged intent.
 
-LofixBot is a multipurpose Discord bot for editing communities. It provides moderation, scam and link protection, giveaways, verification, AFK status, media tools, file conversion, translation, audio detection, tutorial/search helpers, edit rating, contest tools, sticky messages, emoji/sticker utilities, and server configuration features.
+LofixBot uses Discord application commands for user-invoked features. It does not request Message Content access for prefix commands.
 
-## Data We Collect
+## Required Intent
 
-LofixBot may process or store:
+### Message Content
 
-- Discord user IDs
-- Discord server IDs
-- Discord channel IDs
-- Discord role IDs used for permissions or configuration
-- Moderation records such as warnings, mutes, bans, message deletion logs, and related reasons
-- Giveaway, contest, verification, AFK, sticky message, and server configuration data
-- User-submitted links, files, or media needed for bot features
-- Basic technical logs used for debugging, abuse prevention, and reliability
+Message Content access is required for automatic workflows that begin when a member posts a normal message, supported media URL, or attachment:
 
-## Message Content
+- Automatic social-media link detection, metadata extraction, and rich media embedding
+- Automatic song identification from audio or video attachments and supported media URLs
+- Automatic rate-edit workflows for supported media links posted in configured channels
 
-LofixBot uses Message Content access because it supports prefix commands and real-time safety or utility features.
+These workflows cannot be replaced by slash-command options without removing their automatic behavior. The bot must receive the posted message content to detect the supported URL or media and process it immediately. Message content is not used for advertising or AI training and is not stored as a general message archive.
 
-Message content may be processed for moderation filters, scam detection, no-link enforcement, AFK detection, media/embed handling, audio detection, sticky messages, giveaways, and tutorial/search helpers.
+## Evidence
 
-Message content is processed only to provide bot features. LofixBot does not sell message content, use it for advertising, or use it to train AI or machine learning models.
+The evidence below shows the production LofixBot application reacting to ordinary guild messages without a command or interaction.
 
-## Data We Do Not Collect
+### Automatic social-media embedding
 
-LofixBot does not collect:
+A member posts a TikTok URL. LofixBot detects the link and automatically returns a rich media preview with the original media and metadata.
 
-- Passwords
-- Payment information
-- Voice audio
-- User presence or activity status
-- Data for resale or advertising profiles
+![Automatic social-media embedding](automatic-social-media-embedding.png)
 
-## How Data Is Used
+### Automatic song identification
 
-Data is used only to operate LofixBot features, keep server configuration working, enforce moderation settings, prevent abuse, and improve reliability.
+A member posts a TikTok URL. LofixBot automatically processes the linked media, identifies the audio, and returns the matched track with supporting links.
 
-## Data Sharing
+![Automatic song identification](automatic-song-identification.png)
 
-LofixBot does not sell user data. Some features may send user-provided links, files, or media to third-party services only when required to complete a requested action, such as downloading, conversion, translation, background removal, or audio detection.
+### Automatic rate-edit workflow
 
-## Data Retention
+A member posts a Streamable URL. LofixBot detects the supported media link and automatically creates the configured rating workflow for that edit.
 
-Data is retained only as long as needed for bot features, moderation history, server configuration, abuse prevention, or debugging. Temporary files and short-lived processing data may be deleted automatically.
+![Automatic rate-edit workflow](automatic-rate-edit-workflow.png)
 
-## Data Deletion
+## Privacy
 
-Users or server administrators may request deletion of stored data by contacting the bot owner.
-
-## Contact
-
-For privacy or deletion requests, contact the LofixBot owner through Discord.
+Read the [LofixBot Privacy Policy](PRIVACY.md).
